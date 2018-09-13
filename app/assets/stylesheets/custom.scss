@@ -1,48 +1,59 @@
-$background-color:  #cacfd2;
-$background-color2: #838f95;
-$gray: #4E5051;
-$darkgray:#3e4041 ;
-$red: #5C0100;
-$orange: #e89068;
-
-$bg-logo: #f5ebbc; //#e8d068;
+$bg-logo: #f5ebbc;
+$bg-color: #cacfd2;
+$bg-container: #4E5051;
+$font-color-container: white;
 
 .multilinebutton{
     white-space:normal !important;
 }
 
-.center-items {
+.v-center-h-end {
   display: flex;
   justify-content: flex-end;
   align-items: center;
 }
 
+.v-center-h-center {
+  display: flex;
+  //justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
 body {
-  background: $background-color !important;
+  background: $bg-color !important;
 }
 
 a {
   color: black !important;
 }
 
-
-.bg-gray {
-  background-color: $gray;
-  color: white;
+.bg-container {
+  background-color: $bg-container;
+  color: $font-color-container;
 }
 
-.bg-red {
-  background-color: $red;
+.bg-container-lighter {
+  background-color: lighten($bg-container, 20%);
+  color: $font-color-container;
 }
 
 .bg-logo {
   background-color: $bg-logo;
 }
 
-.bg-orange {
-  background-color: $orange;
+.bg-logo-darker {
+  background-color: darken($bg-logo, 40%);
 }
 
-.container.wide {
-   width: 2500px !important;
+.bg-white{
+  background-color: white;
+}
+
+.bg-color {
+  background-color: $bg-color;
+}
+
+.bg-color-darker {
+  background-color: darken($bg-color, 20%);
 }
