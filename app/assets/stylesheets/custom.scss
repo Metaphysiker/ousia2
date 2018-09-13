@@ -1,0 +1,48 @@
+$background-color:  #cacfd2;
+$background-color2: #838f95;
+$gray: #4E5051;
+$darkgray:#3e4041 ;
+$red: #5C0100;
+$orange: #e89068;
+
+$bg-logo: #f5ebbc; //#e8d068;
+
+.multilinebutton{
+    white-space:normal !important;
+}
+
+.center-items {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+body {
+  background: $background-color !important;
+}
+
+a {
+  color: black !important;
+}
+
+
+.bg-gray {
+  background-color: $gray;
+  color: white;
+}
+
+.bg-red {
+  background-color: $red;
+}
+
+.bg-logo {
+  background-color: $bg-logo;
+}
+
+.bg-orange {
+  background-color: $orange;
+}
+
+.container.wide {
+   width: 2500px !important;
+}
