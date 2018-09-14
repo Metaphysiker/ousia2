@@ -4,19 +4,46 @@
 
 <div class="container">
   <div class="row">
-    <div class="col-3 bg-white p-2">
-      Einführung <br>
+    <div class="col-3">
+      <div class="list-group" id="list-tab" role="tablist">
 
-      <% @course.sessions.each do |session| %>
-        <i><%= session.date %></i><br>
-        <%= session.topic %><br>
-        <%#= link_to 'Delete', session_path(session), method: :delete, data: { confirm: 'Are you sure?' } %>
-        <hr>
-      <% end %>
+        <% @course.sessions.order(:date).each_with_index do |session, i| %>
+        <% if i == 0 %>
 
+          <a class="list-group-item list-group-item-action flex-column align-items-start active" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
+        <% else %>
+
+          <a class="list-group-item list-group-item-action flex-column align-items-start" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
+        <% end %>
+
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"><%= session.topic %></h5>
+          </div>
+          <p class="mb-1"><%= fa_icon "calendar" %> <%= session.date.strftime("%d-%m-%Y") %></p>
+        </a>
+        <% end %>
+
+
+      </div>
     </div>
-    <div class="col-9 bg-white p-2">
-      One of three columns
+    <div class="col-9">
+      <div class="tab-content" id="nav-tabContent">
+        <% @course.sessions.order(:date).each_with_index do |session, i| %>
+        <% if i == 0 %>
+
+          <div class="jumbotron tab-pane fade show active" id="list-<%= session.id %>" role="tabpanel" aria-labelledby="list-profile-list">
+        <% else %>
+
+        <div class="jumbotron tab-pane fade" id="list-<%= session.id %>" role="tabpanel" aria-labelledby="list-profile-list">
+        <% end %>
+            <h1 class="display-4"><%= session.topic %></h1>
+            <p class="lead"><b>Datum: </b><%= session.date.strftime("%d-%m-%Y") %></p>
+            <hr class="my-4">
+            <p><%= session.description %></p>
+            <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+        </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </div>
