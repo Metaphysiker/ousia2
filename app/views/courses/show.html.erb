@@ -2,6 +2,25 @@
 
 <p id="notice"><%= notice %></p>
 
+<div class="container">
+  <div class="row">
+    <div class="col-3 bg-white p-2">
+      Einführung <br>
+
+      <% @course.sessions.each do |session| %>
+        <i><%= session.date %></i><br>
+        <%= session.topic %><br>
+        <%#= link_to 'Delete', session_path(session), method: :delete, data: { confirm: 'Are you sure?' } %>
+        <hr>
+      <% end %>
+
+    </div>
+    <div class="col-9 bg-white p-2">
+      One of three columns
+    </div>
+  </div>
+</div>
+
 <div class="container bg-white">
 
   <h1><%= @course.title %></h1>
@@ -14,20 +33,11 @@
     <strong>Semester:</strong> <%= @course.semester %>
 
   </p>
-  <p>
-    <%= @course.sessions.count %>
-  </p>
-
-  <% @course.sessions.each do |session| %>
-    <%= session.topic %><br>
-    <%= session.description %><br>
-    <%= session.date %><br>
-    <hr>
-  <% end %>
 
   <br>
 
-  <%= render 'form_for_session', course: @course, session: @session %>
+<%= render 'form_for_session', course: @course, session: @session %>
+<%#= render 'form_for_session', course: @course, session: @course.sessions.first %>
 
 <%= link_to 'Edit', edit_course_path(@course) %> |
 <%= link_to 'Back', courses_path %>

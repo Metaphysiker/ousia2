@@ -10,7 +10,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    @session = @course.sessions.build
+    #@new_session = @course.sessions.build
+    @session = Session.new(course: @course)
   end
 
   # GET /courses/new
