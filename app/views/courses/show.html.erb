@@ -17,31 +17,7 @@
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <div class="list-group" id="list-tab" role="tablist">
-        <a class="list-group-item text-center">
-          <h3>Übersicht</h3>
-        </a>
-
-
-        <% @course.sessions.order(:date).each_with_index do |session, i| %>
-        <% if i == 0 %>
-
-          <a class="list-group-item list-group-item-action flex-column align-items-start active" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
-        <% else %>
-
-          <a class="list-group-item list-group-item-action flex-column align-items-start" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
-        <% end %>
-
-          <div class="d-flex w-100 justify-content-between">
-            <h5 class="mb-1"><%= session.topic %></h5>
-          </div>
-          <br>
-          <p class="mb-1"><%= fa_icon "calendar" %> <%= session.date.strftime("%d-%m-%Y") %></p>
-        </a>
-        <% end %>
-
-
-      </div>
+      <%= render "sideoverview", course: @course %>
     </div>
     <div class="col-8">
 
@@ -60,8 +36,17 @@
               </div>
               <div class="card-body">
                 <h2 class="card-title"><%= session.topic %></h2>
-                <p class="card-text"><%= session.description %></p>
+                <p class="card-text"><%= sanitize session.description %></p>
                 <p class="card-text"><small class="text-muted"><b>Datum: </b><%= session.date.strftime("%d-%m-%Y") %></small></p>
+                <hr>
+                <div class="alert alert-dark" role="alert">
+                  Zu Lesende Literatur:
+                </div>
+                <p>Literatur</p>
+                <div class="alert alert-dark" role="alert">
+                  Aufgaben:
+                </div>
+                <p>Diskussion</p>
               </div>
             </div>
         </div>
