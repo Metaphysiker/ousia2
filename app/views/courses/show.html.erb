@@ -1,0 +1,35 @@
+<%= render "navigation" %>
+
+<p id="notice"><%= notice %></p>
+
+<div class="container bg-white">
+
+  <h1><%= @course.title %></h1>
+
+  <p>
+    <%= @course.description %>
+  </p>
+
+  <p>
+    <strong>Semester:</strong> <%= @course.semester %>
+
+  </p>
+  <p>
+    <%= @course.sessions.count %>
+  </p>
+
+  <% @course.sessions.each do |session| %>
+    <%= session.topic %><br>
+    <%= session.description %><br>
+    <%= session.date %><br>
+    <hr>
+  <% end %>
+
+  <br>
+
+  <%= render 'form_for_session', course: @course, session: @session %>
+
+<%= link_to 'Edit', edit_course_path(@course) %> |
+<%= link_to 'Back', courses_path %>
+
+</div>

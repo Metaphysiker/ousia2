@@ -1,0 +1,16 @@
+<%#= form_with (model: [course, session], local: true) do |form| %>
+<%#= form_with(model: [course, session], url: [course, session], local: true) do |form| %>
+
+<%= simple_form_for(session) do |f| %>
+
+    <%= f.input :topic %>
+    <%= f.input :description %>
+    <%= f.input :date, order: [:day, :month, :year] %>
+
+    <%= f.hidden_field :course_id, value: course.id %>
+
+    <%= f.button :submit, "Create", class: "btn btn-success btn-lg" %>
+<% end %>
+
+
+</div>
