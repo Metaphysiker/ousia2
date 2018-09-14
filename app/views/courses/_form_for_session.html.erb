@@ -1,6 +1,6 @@
 <%#= form_with (model: [course, session], local: true) do |form| %>
 <%#= form_with(model: [course, session], url: [course, session], local: true) do |form| %>
-
+<div class="m-4">
 <%= simple_form_for(session) do |f| %>
 
     <%= f.input :topic %>
@@ -11,6 +11,5 @@
 
     <%= f.button :submit, "Create", class: "btn btn-success btn-lg" %>
 <% end %>
-
 
 </div>
