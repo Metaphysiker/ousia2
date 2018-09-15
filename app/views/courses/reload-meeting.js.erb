@@ -2,7 +2,10 @@ $("#sideoverview").fadeOut("slow", function(){
 
   x = $("<%= escape_javascript( render "courses/sideoverview", course: @course) %>")
 
-  $("#sideoverview").empty().append(x).fadeIn("slow");
+  $("#sideoverview").empty().append(x).fadeIn("slow", function(){
+      $('a[href="#list-<%= @meeting.id %>"]').tab('show');
+  });
+
 
 });
 
@@ -11,5 +14,4 @@ $( "#meeting" ).fadeOut( "slow", function() {
     x = $("<%= escape_javascript( render "courses/meeting", course: @course, meeting: @new_meeting) %>")
 
     $("#meeting").empty().append(x).fadeIn("slow");
-
 });
