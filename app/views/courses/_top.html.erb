@@ -1,0 +1,15 @@
+<div class="container mt-2">
+  <div class="card mb-3">
+    <% if course.avatar.attached? %>
+
+        <%= image_tag course.avatar, class: "card-img-top" %>
+        <% else %>
+        <img class="card-img-top" src="https://lorempixel.com/480/680/" alt="Card image cap">
+    <% end %>
+    <div class="card-body">
+      <h1 class="card-title"><%= course.title %></h1>
+      <p class="card-text"><%= course.description %></p>
+      <p class="card-text"><small class="text-muted"><strong>Semester:</strong> <%= course.semester %></small></p>
+    </div>
+  </div>
+</div>

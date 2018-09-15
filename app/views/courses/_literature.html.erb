@@ -2,7 +2,7 @@
   Zu Lesende Literatur:
 </div>
 
-<% session.literatures.each do |literature| %>
+<% meeting.literatures.each do |literature| %>
 <div class="row">
   <div class="col-4">
     <% if literature.attachment.attached? %>
@@ -30,4 +30,6 @@
 <hr>
 <% end %>
 
-<%= render 'courses/form_for_literature', session: session %>
+<% if user_signed_in? && current_user.is_admin? %>
+      <%= render 'courses/form_for_literature', meeting: meeting %>
+<% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_09_15_172957) do
+ActiveRecord::Schema.define(version: 2018_09_15_182117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -46,21 +46,21 @@ ActiveRecord::Schema.define(version: 2018_09_15_172957) do
 
   create_table "literatures", force: :cascade do |t|
     t.string "title"
-    t.bigint "session_id"
+    t.bigint "meeting_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["session_id"], name: "index_literatures_on_session_id"
+    t.index ["meeting_id"], name: "index_literatures_on_meeting_id"
   end
 
-  create_table "sessions", force: :cascade do |t|
+  create_table "meetings", force: :cascade do |t|
     t.string "topic"
     t.date "date"
     t.text "description"
-    t.string "type_of_session"
+    t.string "type_of_meeting"
     t.bigint "course_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["course_id"], name: "index_sessions_on_course_id"
+    t.index ["course_id"], name: "index_meetings_on_course_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -71,6 +71,7 @@ ActiveRecord::Schema.define(version: 2018_09_15_172957) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "role", default: "student"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

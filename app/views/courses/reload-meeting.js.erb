@@ -1,0 +1,15 @@
+$("#sideoverview").fadeOut("slow", function(){
+
+  x = $("<%= escape_javascript( render "courses/sideoverview", course: @course) %>")
+
+  $("#sideoverview").empty().append(x).fadeIn("slow");
+
+});
+
+$( "#meeting" ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "courses/meeting", course: @course, meeting: @new_meeting) %>")
+
+    $("#meeting").empty().append(x).fadeIn("slow");
+
+});

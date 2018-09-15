@@ -1,0 +1,47 @@
+<div class="tab-content" id="nav-tabContent">
+  <% course.meetings.order(:date).each_with_index do |meeting, i| %>
+    <% if i == 0 %>
+
+      <div class="tab-pane fade show active" id="list-<%= meeting.id %>" role="tabpanel" aria-labelledby="list-profile-list">
+    <% else %>
+
+    <div class="tab-pane fade" id="list-<%= meeting.id %>" role="tabpanel" aria-labelledby="list-profile-list">
+    <% end %>
+      <div class="card mb-3">
+        <div class="embed-responsive embed-responsive-16by9">
+          <% if meeting.video.attached? %>
+            <%= video_tag rails_blob_path(meeting.video), :class => "embed-responsive", :controls => true %>
+          <% else %>
+              <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/L9AkpdVtK9A" allowfullscreen></iframe>
+          <% end %>
+        </div>
+        <div class="card-body">
+          <h2 class="card-title"><%= meeting.topic %></h2>
+          <h6 class="card-subtitle mb-2 text-muted"><%= meeting.type_of_meeting %></h6>
+          <p class="card-text"><%= sanitize meeting.description %></p>
+          <p class="card-text"><small class="text-muted"><b>Datum: </b><%= meeting.date.strftime("%d-%m-%Y") %></small></p>
+          <hr>
+
+
+          <div id="literature-<%=meeting.id %>">
+            <%= render 'courses/literature', meeting: meeting %>
+          </div>
+
+            <%#= link_to 'Destroy', literature_path(literature), method: :delete, data: { confirm: 'Are you sure?' } %>
+        </div>
+      </div>
+  </div>
+  <% end %>
+
+  <div class="tab-pane fade" id="list-new" role="tabpanel" aria-labelledby="list-profile-list">
+    <div class="card mb-3">
+
+      <div class="card-body">
+        <%= render "courses/form_for_meeting", course: course, meeting: meeting %>
+      </div>
+    </div>
+</div>
+
+  </div>
+
+</div>

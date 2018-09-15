@@ -1,25 +1,31 @@
-<div class="list-group overflow-y" id="list-tab" role="tablist">
+<div class="list-group" id="list-tab" role="tablist">
   <a class="list-group-item text-center">
     <h3>Übersicht</h3>
   </a>
 
+  <% if user_signed_in? && current_user.is_admin? %>
+        <a class="list-group-item list-group-item-action flex-column align-items-start" id="list-home-list" data-toggle="list" href="#list-new" role="tab" aria-controls="home">
+          <div class="d-flex w-100 justify-content-between">
+            <h5 class="mb-1"> <%= fa_icon "plus" %> Sitzung hinzufügen</h5>
+          </div>
+        </a>
+  <% end %>
 
-  <% course.sessions.order(:date).each_with_index do |session, i| %>
+  <% course.meetings.order(:date).each_with_index do |meeting, i| %>
   <% if i == 0 %>
 
-    <a class="list-group-item list-group-item-action flex-column align-items-start active" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
+    <a class="list-group-item list-group-item-action flex-column align-items-start active" id="list-home-list" data-toggle="list" href="#list-<%= meeting.id %>" role="tab" aria-controls="home">
   <% else %>
 
-    <a class="list-group-item list-group-item-action flex-column align-items-start" id="list-home-list" data-toggle="list" href="#list-<%= session.id %>" role="tab" aria-controls="home">
+    <a class="list-group-item list-group-item-action flex-column align-items-start" id="list-home-list" data-toggle="list" href="#list-<%= meeting.id %>" role="tab" aria-controls="home">
   <% end %>
 
     <div class="d-flex w-100 justify-content-between">
-      <h5 class="mb-1"><%= session.topic %></h5>
+      <h5 class="mb-1"><%= meeting.topic %></h5>
     </div>
-    <p class="text-muted"><%= session.type_of_session %></p>
-    <p class="mb-1"><%= fa_icon "calendar" %> <%= session.date.strftime("%d-%m-%Y") %></p>
+    <p class="text-muted"><%= meeting.type_of_meeting %></p>
+    <p class="mb-1"><%= fa_icon "calendar" %> <%= meeting.date.strftime("%d-%m-%Y") %></p>
   </a>
   <% end %>
-
 
 </div>

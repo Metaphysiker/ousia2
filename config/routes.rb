@@ -1,8 +1,8 @@
 Rails.application.routes.draw do
+  resources :meetings
   devise_for :users
   resources :literatures
   resources :courses
-  resources :sessions
 
   #resources :courses do
   #  resources :sessions

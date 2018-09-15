@@ -1,0 +1,7 @@
+$( "#literature-<%= @meeting.id %>" ).fadeOut( "slow", function() {
+
+    x = $("<%= escape_javascript( render "courses/literature/", meeting: @meeting) %>")
+
+    $("#literature-<%= @meeting.id %>").empty().append(x).fadeIn("slow");
+
+});

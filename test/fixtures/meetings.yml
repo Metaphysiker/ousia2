@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  topic: MyString
+  date: 2018-09-15
+  description: MyText
+  type_of_session: MyString
+
+two:
+  topic: MyString
+  date: 2018-09-15
+  description: MyText
+  type_of_session: MyString

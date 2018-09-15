@@ -1,0 +1,19 @@
+<%#= form_with (model: [course, meeting], local: true) do |form| %>
+<%#= form_with(model: [course, meeting], url: [course, meeting], local: true) do |form| %>
+<div class="m-4">
+<%= simple_form_for meeting, remote:true do |f| %>
+
+    <%= f.input :topic %>
+    <%= f.input :type_of_meeting, collection: Rails.configuration.types_of_meeting %>
+    <%= f.input :description %>
+    <%= f.input :date, order: [:day, :month, :year] %>
+
+    <%= f.hidden_field :course_id, value: course.id %>
+
+    <%= f.file_field :video %>
+    <br>
+    <br>
+    <%= f.button :submit, "Create", class: "btn btn-success btn-lg" %>
+<% end %>
+
+</div>

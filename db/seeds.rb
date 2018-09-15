@@ -16,17 +16,17 @@
 
   rand(8..15).times do
 
-  s = Session.create(
+  m = Meeting.create(
       course_id: c.id,
       topic: Faker::Company.unique.catch_phrase,
       description: Faker::Lorem.paragraph(10, true, 6),
       date: Faker::Date.between(Date.today, 1.year.from_now),
-      type_of_session: Rails.configuration.types_of_session.sample #["Vorlesung", "Prüfung", "Sitzung", "Vortrag", "Übung"].sample
+      type_of_meeting: Rails.configuration.types_of_meeting.sample #["Vorlesung", "Prüfung", "Sitzung", "Vortrag", "Übung"].sample
     )
 
     rand(1..3).times do
       Literature.create(
-        session_id: s.id,
+        meeting_id: m.id,
         title: Faker::Book.author + ': "' + Faker::Book.title + '" - ' + Faker::Book.publisher
       )
     end

@@ -25,17 +25,17 @@ class LiteraturesController < ApplicationController
   # POST /literatures.json
   def create
     @literature = Literature.new(literature_params)
-    @session = @literature.session
+    @meeting = @literature.meeting
 
     respond_to do |format|
       if @literature.save
         format.html { redirect_to @literature, notice: 'Literature was successfully created.' }
         format.json { render :show, status: :created, location: @literature }
-        format.js { render 'courses/reload.js.erb' }
+        format.js { render 'courses/reload-literature.js.erb' }
       else
         format.html { render :new }
         format.json { render json: @literature.errors, status: :unprocessable_entity }
-        format.js {'courses/reload.js.erb'}
+        format.js {'courses/reload-literature.js.erb'}
       end
     end
   end
@@ -72,6 +72,6 @@ class LiteraturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def literature_params
-      params.require(:literature).permit(:title, :session_id, :attachment)
+      params.require(:literature).permit(:title, :meeting_id, :attachment)
     end
 end

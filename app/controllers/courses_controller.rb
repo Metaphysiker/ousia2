@@ -10,8 +10,8 @@ class CoursesController < ApplicationController
   # GET /courses/1
   # GET /courses/1.json
   def show
-    #@new_session = @course.sessions.build
-    @session = Session.new(course: @course)
+    #@new_meeting = @course.meetings.build
+    @meeting = Meeting.new(course: @course)
   end
 
   # GET /courses/new
@@ -72,6 +72,6 @@ class CoursesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def course_params
-      params.require(:course).permit(:title, :description, :avatar, :semester, sessions_attributes: [ :topic, :description, :date])
+      params.require(:course).permit(:title, :description, :avatar, :semester, meetings_attributes: [ :topic, :description, :date])
     end
 end

@@ -2,74 +2,20 @@
 
 <%= flash_messages %>
 
-<div class="container">
-  <div class="card mb-3">
-    <% if @course.avatar.attached? %>
-
-        <%= image_tag @course.avatar, class: "card-img-top" %>
-        <% else %>
-        <img class="card-img-top" src="https://lorempixel.com/480/680/" alt="Card image cap">
-    <% end %>
-    <div class="card-body">
-      <h1 class="card-title"><%= @course.title %></h1>
-      <p class="card-text"><%= @course.description %></p>
-      <p class="card-text"><small class="text-muted"><strong>Semester:</strong> <%= @course.semester %></small></p>
-    </div>
-  </div>
-</div>
+<%= render "top", course: @course %>
 
 <div class="container">
   <div class="row">
     <div class="col-4">
-      <%= render "sideoverview", course: @course %>
+      <div id="sideoverview">
+        <%= render "sideoverview", course: @course %>
+      </div>
+
     </div>
     <div class="col-8">
-
-      <div class="tab-content" id="nav-tabContent">
-        <% @course.sessions.order(:date).each_with_index do |session, i| %>
-        <% if i == 0 %>
-
-          <div class="tab-pane fade show active" id="list-<%= session.id %>" role="tabpanel" aria-labelledby="list-profile-list">
-        <% else %>
-
-        <div class="tab-pane fade" id="list-<%= session.id %>" role="tabpanel" aria-labelledby="list-profile-list">
-        <% end %>
-            <div class="card mb-3">
-              <div class="embed-responsive embed-responsive-16by9">
-                <% if session.video.attached? %>
-                  <%= video_tag rails_blob_path(session.video), :class => "embed-responsive", :controls => true %>
-                <% else %>
-                    <iframe class="embed-responsive-item" src="https://www.youtube.com/embed/L9AkpdVtK9A" allowfullscreen></iframe>
-                <% end %>
-              </div>
-              <div class="card-body">
-                <h2 class="card-title"><%= session.topic %></h2>
-                <h6 class="card-subtitle mb-2 text-muted"><%= session.type_of_session %></h6>
-                <p class="card-text"><%= sanitize session.description %></p>
-                <p class="card-text"><small class="text-muted"><b>Datum: </b><%= session.date.strftime("%d-%m-%Y") %></small></p>
-                <hr>
-
-
-                <div id="literature-<%=session.id %>">
-                  <%= render 'literature', session: session %>
-                </div>
-
-                  <%#= link_to 'Destroy', literature_path(literature), method: :delete, data: { confirm: 'Are you sure?' } %>
-              </div>
-            </div>
-        </div>
-        <% end %>
+      <div id="meeting">
+        <%= render "meeting", course: @course, meeting: @meeting %>
       </div>
-    </div>
   </div>
 </div>
-</div>
-<br>
-<br>
-
-<div class="container">
-  <div class="card mb-3">
-    <%= render 'form_for_session', course: @course, session: @session %>
-    <%#= render 'form_for_session', course: @course, session: @course.sessions.first %>
-  </div>
 </div>
