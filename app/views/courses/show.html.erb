@@ -36,17 +36,27 @@
               </div>
               <div class="card-body">
                 <h2 class="card-title"><%= session.topic %></h2>
+                <h6 class="card-subtitle mb-2 text-muted"><%= session.type_of_session %></h6>
                 <p class="card-text"><%= sanitize session.description %></p>
                 <p class="card-text"><small class="text-muted"><b>Datum: </b><%= session.date.strftime("%d-%m-%Y") %></small></p>
                 <hr>
                 <div class="alert alert-dark" role="alert">
                   Zu Lesende Literatur:
                 </div>
-                <p>Literatur</p>
-                <div class="alert alert-dark" role="alert">
-                  Aufgaben:
+                <% session.literatures.each do |literature| %>
+                <div class="row">
+                  <div class="col-2">
+                    <a class="btn btn-light" href="http://info.sjc.ox.ac.uk/scr/hacker/docs/TheLinguisticTurn.pdf" target="_blank" role="button"><%= fa_icon "download" %></a>
+                  </div>
+                  <div class="col-10">
+                      <%= literature.title %>
+                  </div>
                 </div>
-                <p>Diskussion</p>
+
+                  <%#= link_to 'Destroy', literature_path(literature), method: :delete, data: { confirm: 'Are you sure?' } %>
+                  <hr>
+                <% end %>
+                <%#= render 'form_for_literature', session: session %>
               </div>
             </div>
         </div>
@@ -61,10 +71,7 @@
 
 <div class="container">
   <div class="card mb-3">
-    <%= render 'form_for_session', course: @course, session: @session %>
+    <%#= render 'form_for_session', course: @course, session: @session %>
     <%#= render 'form_for_session', course: @course, session: @course.sessions.first %>
-
-    <%= link_to 'Edit', edit_course_path(@course) %> |
-    <%= link_to 'Back', courses_path %>
   </div>
 </div>

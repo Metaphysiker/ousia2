@@ -73,5 +73,12 @@ a {
 }
 
 .overflow-y {
+  max-height: 100vh;
   overflow-y: scroll;
+}
+
+.active {
+    background-color:lighten($bg-color, 10%) !important; //#DCDCDC !important;
+    border-color: lighten($bg-color, 10%) !important;//#DCDCDC !important;
+
 }

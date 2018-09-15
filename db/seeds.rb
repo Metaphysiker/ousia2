@@ -15,12 +15,22 @@
   )
 
   rand(8..15).times do
-    Session.create(
+
+  s = Session.create(
       course_id: c.id,
       topic: Faker::Company.unique.catch_phrase,
-      description: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
-      date: Faker::Date.between(Date.today, 1.year.from_now)
+      description: Faker::Lorem.paragraph(10, true, 6),
+      date: Faker::Date.between(Date.today, 1.year.from_now),
+      type_of_session: Rails.configuration.types_of_session.sample #["Vorlesung", "Prüfung", "Sitzung", "Vortrag", "Übung"].sample
     )
+
+    rand(1..3).times do
+      Literature.create(
+        session_id: s.id,
+        title: Faker::Book.author + ': "' + Faker::Book.title + '" - ' + Faker::Book.publisher
+      )
+    end
+
   end
 
 end

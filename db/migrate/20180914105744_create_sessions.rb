@@ -4,6 +4,7 @@ class CreateSessions < ActiveRecord::Migration[5.2]
       t.string :topic
       t.date :date
       t.text :description
+      t.string :type_of_session
       t.belongs_to :course, index: true
 
       t.timestamps

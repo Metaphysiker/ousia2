@@ -1,4 +1,4 @@
-<div class="list-group" id="list-tab" role="tablist">
+<div class="list-group overflow-y" id="list-tab" role="tablist">
   <a class="list-group-item text-center">
     <h3>Übersicht</h3>
   </a>
@@ -16,7 +16,7 @@
     <div class="d-flex w-100 justify-content-between">
       <h5 class="mb-1"><%= session.topic %></h5>
     </div>
-    <br>
+    <p class="text-muted"><%= session.type_of_session %></p>
     <p class="mb-1"><%= fa_icon "calendar" %> <%= session.date.strftime("%d-%m-%Y") %></p>
   </a>
   <% end %>
