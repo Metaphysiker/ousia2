@@ -25,14 +25,17 @@ class LiteraturesController < ApplicationController
   # POST /literatures.json
   def create
     @literature = Literature.new(literature_params)
+    @session = @literature.session
 
     respond_to do |format|
       if @literature.save
         format.html { redirect_to @literature, notice: 'Literature was successfully created.' }
         format.json { render :show, status: :created, location: @literature }
+        format.js { render 'courses/reload.js.erb' }
       else
         format.html { render :new }
         format.json { render json: @literature.errors, status: :unprocessable_entity }
+        format.js {'courses/reload.js.erb'}
       end
     end
   end

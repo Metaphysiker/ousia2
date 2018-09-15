@@ -1,7 +1,6 @@
 <%= render "navigation" %>
 
-<p id="notice"><%= notice %></p>
-
+<%= flash_messages %>
 
 <div class="container">
   <div class="card mb-3">
@@ -49,39 +48,13 @@
                 <p class="card-text"><%= sanitize session.description %></p>
                 <p class="card-text"><small class="text-muted"><b>Datum: </b><%= session.date.strftime("%d-%m-%Y") %></small></p>
                 <hr>
-                <div class="alert alert-dark" role="alert">
-                  Zu Lesende Literatur:
-                </div>
 
-                <% session.literatures.each do |literature| %>
-                <div class="row">
-                  <div class="col-4">
-                    <% if literature.attachment.attached? %>
-                    <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
-                      <%= image_tag literature.attachment.preview(resize: "500"), class: "img-fluid" %>
-                      <% end %>    
-                    <% end %>
-                  </div>
-                  <div class="col-8">
-                    <p>
-                      <%= literature.title %>
-                    </p>
-                    <hr>
-                    <% if literature.attachment.attached? %>
-                    <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
-                      <%= fa_icon "download" %>
-                      <% end %>
 
-                      <% else %>
-                      <button type="button" class="btn btn-light"><%= fa_icon "download" %></button>
-                    <% end %>
-                  </div>
+                <div id="literature-<%=session.id %>">
+                  <%= render 'literature', session: session %>
                 </div>
 
                   <%#= link_to 'Destroy', literature_path(literature), method: :delete, data: { confirm: 'Are you sure?' } %>
-                  <hr>
-                <% end %>
-                <%= render 'form_for_literature', session: session %>
               </div>
             </div>
         </div>

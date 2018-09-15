@@ -1,5 +1,5 @@
 <div class="m-4">
-<%= simple_form_for(Literature.new) do |f| %>
+<%= simple_form_for Literature.new, remote:true do |f| %>
 
     <%= f.input :title %>
     <%= f.input :attachment %>

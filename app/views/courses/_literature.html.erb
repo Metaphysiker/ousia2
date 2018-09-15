@@ -1,0 +1,33 @@
+<div class="alert alert-dark" role="alert">
+  Zu Lesende Literatur:
+</div>
+
+<% session.literatures.each do |literature| %>
+<div class="row">
+  <div class="col-4">
+    <% if literature.attachment.attached? %>
+    <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
+      <%= image_tag literature.attachment.preview(resize: "500"), class: "img-fluid" %>
+      <% end %>
+    <% end %>
+  </div>
+  <div class="col-8">
+    <p>
+      <%= literature.title %>
+    </p>
+    <hr>
+    <% if literature.attachment.attached? %>
+    <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
+      <%= fa_icon "download" %>
+      <% end %>
+
+      <% else %>
+      <button type="button" class="btn btn-light"><%= fa_icon "download" %></button>
+    <% end %>
+  </div>
+</div>
+
+<hr>
+<% end %>
+
+<%= render 'courses/form_for_literature', session: session %>
