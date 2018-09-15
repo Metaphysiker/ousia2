@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  devise_for :users
   resources :literatures
   resources :courses
   resources :sessions
@@ -6,8 +7,6 @@ Rails.application.routes.draw do
   #resources :courses do
   #  resources :sessions
   #end
-
-
 
   root 'static_pages#welcome'
   get '/preview', to: 'static_pages#preview'
