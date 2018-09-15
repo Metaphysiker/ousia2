@@ -6,9 +6,19 @@
 <div class="row">
   <div class="col-4">
     <% if literature.attachment.attached? %>
-    <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
-      <%= image_tag literature.attachment.preview(resize: "500"), class: "img-fluid" %>
+
+      <% if literature.attachment.previewable? %>
+        <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
+          <%= image_tag literature.attachment.preview(resize: "500"), class: "img-fluid" %>
+        <% end %>
+      <% else %>
+        <%= fa_icon "file" %>
       <% end %>
+
+      <% else %>
+
+      <%= fa_icon "file" %>
+
     <% end %>
   </div>
   <div class="col-8">
