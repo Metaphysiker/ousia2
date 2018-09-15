@@ -6,6 +6,7 @@ ruby '2.5.1'
 gem 'faker'
 gem 'populator'
 gem "aws-sdk-s3", require: false
+gem 'mini_magick'
 
 #gem "factory_bot_rails", "~> 4.0"
 gem 'bootstrap', '~> 4.1.2'

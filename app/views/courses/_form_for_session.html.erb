@@ -10,6 +10,8 @@
 
     <%= f.hidden_field :course_id, value: course.id %>
 
+    <%= f.file_field :video %>
+
     <%= f.button :submit, "Create", class: "btn btn-success btn-lg" %>
 <% end %>
 

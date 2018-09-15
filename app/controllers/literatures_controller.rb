@@ -69,6 +69,6 @@ class LiteraturesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def literature_params
-      params.require(:literature).permit(:title, :session_id)
+      params.require(:literature).permit(:title, :session_id, :attachment)
     end
 end
