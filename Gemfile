@@ -5,6 +5,7 @@ ruby '2.5.1'
 
 gem 'faker'
 gem 'populator'
+gem "aws-sdk-s3", require: false
 
 #gem "factory_bot_rails", "~> 4.0"
 gem 'bootstrap', '~> 4.1.2'

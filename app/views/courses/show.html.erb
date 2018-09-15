@@ -8,6 +8,14 @@
     <img class="card-img-top" src="https://lorempixel.com/480/680/" alt="Card image cap">
     <div class="card-body">
       <h1 class="card-title"><%= @course.title %></h1>
+      <%= @course.avatar.attached? %>
+      <% if @course.avatar.attached? %>
+        <p>
+          <strong>Image:</strong>
+          <br>
+          <%= image_tag @course.avatar %>
+        </p>
+      <% end %>
       <p class="card-text"><%= @course.description %></p>
       <p class="card-text"><small class="text-muted"><strong>Semester:</strong> <%= @course.semester %></small></p>
     </div>
