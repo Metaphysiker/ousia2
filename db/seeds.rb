@@ -10,7 +10,7 @@
 
   c = Course.create(
     title: Faker::Company.unique.catch_phrase,
-    description: Faker::Lorem.paragraphs(rand(2..8)).join('\n'),
+    description: Faker::Lorem.paragraph(10, true, 6),
     semester: "FS19"
   )
 
@@ -33,4 +33,11 @@
 
   end
 
+end
+
+50.times.each do
+  u = User.create(
+          email: Faker::Internet.email,
+          password: "12345678"
+      )
 end
