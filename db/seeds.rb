@@ -6,7 +6,7 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-300.times do
+50.times do
 
   c = Course.create(
     title: Faker::Company.unique.catch_phrase,
@@ -14,7 +14,7 @@
     semester: "FS19"
   )
 
-  rand(8..15).times do
+  rand(8..10).times do
 
   m = Meeting.create(
       course_id: c.id,
@@ -35,7 +35,7 @@
 
 end
 
-50.times.each do
+20.times.each do
   u = User.create(
           email: Faker::Internet.email,
           password: "12345678"
