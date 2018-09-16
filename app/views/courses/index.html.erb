@@ -1,4 +1,30 @@
-<p id="notice"><%= notice %></p>
+<div class="container bg-container p-5">
+  <h1>Alle Kurse</h1>
+  <br>
+
+<% @courses.in_groups_of(3, false).each do |groups| %>
+    <div class="card-deck">
+        <% groups.each do |course| %>
+        <div class="card mb-4">
+          <% if course.avatar.attached? %>
+              <%= image_tag course.avatar, class: "card-img-top" %>
+              <% else %>
+              <img class="card-img-top" src="https://loremflickr.com/320/240/science?random=<%=course.id%>" alt="Card image cap">
+          <% end %>
+          <div class="card-body">
+            <h5 class="card-title"><%= course.title %></h5>
+            <p class="card-text"><%= course.description %></p>
+
+          </div>
+          <div class="card-footer">
+            <%= link_to 'Mehr Informationen', course_path(course), class: "btn btn-success text-white" %>
+          </div>
+        </div>
+        <% end %>
+    </div>
+<% end %>
+
+</div>
 
 <h1>Courses</h1>
 

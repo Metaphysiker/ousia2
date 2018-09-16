@@ -62,43 +62,27 @@
   <h1>Bachelor-Kurse</h1>
   <br>
 
-<div class="card-deck">
-  <div class="card">
-    <%= image_tag("bible.jpg", class: "card-img-top") %>
-    <div class="card-body">
-      <h5 class="card-title">Einführung in die Theologie</h5>
-      <p class="card-text">Theologie bedeutet „die Lehre von Gott“ oder Göttern im Allgemeinen und die Lehren vom Inhalt eines spezifischen religiösen Glaubens und seinen Glaubensdokumenten im Besonderen.</p>
+  <% @courses.in_groups_of(3, false).each do |groups| %>
+      <div class="card-deck">
+          <% groups.each do |course| %>
+          <div class="card mb-4">
+            <% if course.avatar.attached? %>
+                <%= image_tag course.avatar, class: "card-img-top" %>
+                <% else %>
+                <img class="card-img-top" src="https://loremflickr.com/320/240/science?random=<%=course.id%>" alt="Card image cap">
+            <% end %>
+            <div class="card-body">
+              <h5 class="card-title"><%= course.title %></h5>
+              <p class="card-text"><%= course.description %></p>
 
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-success text-white">Anmelden</a>
-    </div>
-  </div>
-  <div class="card">
-    <%= image_tag("benedict-de-spinoza.jpg", class: "card-img-top") %>
-    <div class="card-body">
-      <h5 class="card-title">Die Philosophie von Spinoza</h5>
-      <p class="card-text">Spinoza war ein niederländischer Philosoph und Sohn portugiesischer Immigranten sephardischer Herkunft und portugiesischer Muttersprache.</p>
-    </div>
-    <div class="card-footer">
-      <a href="#" class="btn btn-success text-white">Anmelden</a>
-    </div>
-  </div>
-
-  <div class="card">
-    <%= image_tag("ontology.png", class: "card-img-top") %>
-    <div class="card-body">
-      <h5 class="card-title">Was ist Ontologie?</h5>
-      <p class="card-text">Ontologie Die Ontologie ist eine Disziplin der Philosophie, die sich mit der Einteilung des Seienden und den Grundstrukturen der Wirklichkeit befasst.</p>
-    </div>
-
-    <div class="card-footer">
-      <a href="#" class="btn btn-success text-white">Anmelden</a>
-    </div>
-  </div>
-
-
-</div>
+            </div>
+            <div class="card-footer">
+              <%= link_to 'Mehr Informationen', course_path(course), class: "btn btn-success text-white" %>
+            </div>
+          </div>
+          <% end %>
+      </div>
+  <% end %>
 
 </div>
 
