@@ -23,7 +23,7 @@ def add_random_meeting(course_id)
       course_id: course_id,
       topic: Faker::Company.unique.catch_phrase,
       description: Faker::Lorem.paragraph(10, true, 6),
-      date: Faker::Date.between(Date.today, 1.year.from_now),
+      date: Faker::Date.between(Date.today + 8.days, 1.year.from_now),
       type_of_meeting: Rails.configuration.types_of_meeting.sample #["Vorlesung", "Prüfung", "Sitzung", "Vortrag", "Übung"].sample
     )
 
@@ -47,7 +47,42 @@ c1 = Course.create(
   )
 c1.avatar.attach(io: File.open("#{Rails.root}/app/assets/images/bible.jpg"), filename: 'bible.jpg')
 
-rand(8..10).times do
+m1 = Meeting.create(
+    course_id: c1.id,
+    topic: "Theologie und ihre Geschichte",
+    description: "Theologen in der Alten Kirche waren häufig Bischöfe, im Mittelalter in der Regel Mönche. Mit der Entstehung der Universitäten als Ordenshochschulen im Mittelalter bildete die Theologie meist die erste Fakultät. Im Hochmittelalter bekam der Begriff bei Peter Abaelard (Frühscholastik) und Bonaventura (Hochscholastik) erstmals die allgemeinere Bedeutung das Gebiet des heiligen Wissens, das die gesamte christliche Lehre umfasste. Zum feststehenden Begriff in diesem Sinn wurde Theologie insbesondere aufgrund der Summa theologica von Thomas von Aquin, der Theologie in erster Linie als spekulative, theoretische Wissenschaft ansah.",
+    date: Date.today,
+    type_of_meeting: "Vorlesung"
+  )
+
+m1.video.attach(io: File.open("#{Rails.root}/app/assets/files/kenny1.mp4"), filename: 'kenny1.mp4')
+
+l1 =  Literature.create(
+    meeting_id: m1.id,
+    title: "Einführung in die Geschichte der Theologie (englisch). S.1-20 ",
+  )
+
+l1.attachment.attach(io: File.open("#{Rails.root}/app/assets/files/einftheologie.pdf"), filename: 'einftheologie.pdf')
+
+m2 = Meeting.create(
+    course_id: c1.id,
+    topic: "Grundfragen der Theologie",
+    description: "Die christliche Theologie vertritt das Selbstverständnis, eine wissenschaftliche Auseinandersetzung mit den Quellen christlichen Glaubens und christlicher Glaubenspraxis zu leisten sowie die Darstellung christlichen Glaubens und seine systematische Analyse zu liefern. Die Wissenschaftsfähigkeit der Theologie ist umstritten. Fragestellungen der Wissenschaftstheorie der Theologie werden im Teilgebiet der Fundamentaltheologie, die eine Teildisziplin der systematischen Theologie ist, behandelt.",
+    date: Date.today + 7.days,
+    type_of_meeting: "Vorlesung"
+  )
+
+m2.video.attach(io: File.open("#{Rails.root}/app/assets/files/kenny2.mp4"), filename: 'kenny2.mp4')
+
+l2 =  Literature.create(
+    meeting_id: m2.id,
+    title: 'Wolfhart Pannenberg: "Grundfragen der Theologie". S. 1-15',
+  )
+
+l2.attachment.attach(io: File.open("#{Rails.root}/app/assets/files/grundfragen.pdf"), filename: 'grundfragen.pdf')
+
+
+rand(6..8).times do
   add_random_meeting(c1.id)
 end
 
