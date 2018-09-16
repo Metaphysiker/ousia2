@@ -10,7 +10,6 @@
       <% if literature.attachment.previewable? %>
         <%= link_to rails_blob_path(literature.attachment, disposition: "attachment"), class: "btn btn-light" do %>
           <%= image_tag literature.attachment.preview(resize: "500"), class: "img-fluid" %><br>
-          <%= image_tag rails_blob_path(literature.attachment, disposition: "attachment").preview(resize: "500"), class: "img-fluid" %>
         <% end %>
       <% else %>
         <%= fa_icon "file" %>
